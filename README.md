@@ -15,7 +15,9 @@ My advice is to install this script as root. Since few commands like mount and i
 On your Raspberry Pi, download the latest version of piBlackBox:
 
     ```git clone https://github.com/akaped/piBlackBox.git```
+    
     or
+    
     ```wget https://github.com/akaped/piBlackBox/archive/master.zip```
 
 
@@ -23,12 +25,12 @@ Go into the project directory and make the script executable:
 
 ```
 cd BlackBox
-chmod +x install-black-box.sh
+chmod +x install-piblackbox.sh
 ```
 
 Run the installer script:
 
-    sh install-black-box.sh
+    sh install-piblackbox.sh
 
 The script will create two folders called cards and storage in /media/ and set up the proper permission.
 Then it will install a @reboot script insede your crontab that will run at every reboot.
