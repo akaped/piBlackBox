@@ -3,8 +3,11 @@
 Bash shell scripts that transform a Raspberry Pi (or any single-board computer running a Debian-based Linux distribution) into an inexpensive, fully-automatic, pocketable photo backup and streaming device.
 
 Original project name: little-backup-box
+
 Original Author: Dmitri Popov dmpop@linux.com
+
 Original GitHub page: https://github.com/dmpop/little-backup-box
+
 
 This original script has been modified to allow the installation also on different linux distributions ( I'm using Kali).
 My advice is to install this script as root. Since few commands like mount and init require to have administrative privileges.
@@ -12,23 +15,25 @@ My advice is to install this script as root. Since few commands like mount and i
 
 ## Installation
 
-On your Raspberry Pi, download the latest version of Little Backup Box:
+On your Raspberry Pi, download the latest version of piBlackBox:
 
-    ```git clone git@github.com:akaped/BlackBox.git```
+    ```git clone https://github.com/akaped/piBlackBox.git```
+    
     or
-    ```wget https://github.com/akaped/BlackBox/archive/master.zip```
+    
+    ```wget https://github.com/akaped/piBlackBox/archive/master.zip```
 
 
 Go into the project directory and make the script executable:
 
 ```
 cd BlackBox
-chmod +x install-black-box.sh
+chmod +x install-piblackbox.sh
 ```
 
 Run the installer script:
 
-    sh install-black-box.sh
+    sh install-piblackbox.sh
 
 The script will create two folders called cards and storage in /media/ and set up the proper permission.
 Then it will install a @reboot script insede your crontab that will run at every reboot.
