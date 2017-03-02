@@ -2,9 +2,12 @@
 
 Bash shell scripts that transform a Raspberry Pi (or any single-board computer running a Debian-based Linux distribution) into an inexpensive, fully-automatic, pocketable photo backup and streaming device.
 
-Original project name: little-backup-box . 
-Original Author: Dmitri Popov dmpop@linux.com . 
-Original GitHub page: https://github.com/dmpop/little-backup-box . 
+Original project name: little-backup-box
+
+Original Author: Dmitri Popov dmpop@linux.com
+
+Original GitHub page: https://github.com/dmpop/little-backup-box
+
 
 This original script has been modified to allow the installation also on different linux distributions ( I'm using Kali).
 My advice is to install this script as root. Since few commands like mount and init require to have administrative privileges.
