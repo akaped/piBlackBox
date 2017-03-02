@@ -12,11 +12,11 @@ My advice is to install this script as root. Since few commands like mount and i
 
 ## Installation
 
-On your Raspberry Pi, download the latest version of Little Backup Box:
+On your Raspberry Pi, download the latest version of piBlackBox:
 
-    ```git clone git@github.com:akaped/BlackBox.git```
+    ```git clone https://github.com/akaped/piBlackBox.git```
     or
-    ```wget https://github.com/akaped/BlackBox/archive/master.zip```
+    ```wget https://github.com/akaped/piBlackBox/archive/master.zip```
 
 
 Go into the project directory and make the script executable:
