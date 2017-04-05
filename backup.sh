@@ -5,13 +5,16 @@
 # to install the required packages and configure the system.
 
 # Specify devices and their mount points
-STORAGE_DEV="sda1"
+STORAGE_DEV="sda2"
 STORAGE_MOUNT_POINT="/media/storage"
 CARD_DEV="sdb1"
 CARD_MOUNT_POINT="/media/card"
 
 # Set the ACT LED to heartbeat
-sudo sh -c "echo heartbeat > /sys/class/leds/led0/trigger"
+#sudo sh -c "echo heartbeat > /sys/class/leds/led0/trigger"
+echo "4" > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio4/direction
+
 echo "Waiting for a storage device - Connect USB HD or Flash stick"
 # Wait for a USB storage device (e.g., a USB flash drive)
 STORAGE=$(ls /dev/* | grep $STORAGE_DEV | cut -d"/" -f3)
@@ -25,11 +28,11 @@ done
 mount /dev/$STORAGE_DEV $STORAGE_MOUNT_POINT
 
 echo "USB Storage mounted"
-
+echo "1" > /sys/class/gpio/gpio4/value
 
 # Set the ACT LED to blink at 1000ms to indicate that the storage device has been mounted
-sudo sh -c "echo timer > /sys/class/leds/led0/trigger"
-sudo sh -c "echo 1000 > /sys/class/leds/led0/delay_on"
+#sudo sh -c "echo timer > /sys/class/leds/led0/trigger"
+#sudo sh -c "echo 1000 > /sys/class/leds/led0/delay_on"
 
 echo "Waiting for the camera or SD Card"
 
@@ -41,6 +44,7 @@ until [ ! -z $CARD_READER ]
   CARD_READER=$(ls /dev/sd* | grep $CARD_DEV | cut -d"/" -f3)
 done
 
+echo "0" > /sys/class/gpio/gpio4/value
 
 # If the card reader is detected, mount it and obtain its UUID
 if [ ! -z $CARD_READER ]; then
@@ -59,11 +63,18 @@ if [ ! -z $CARD_READER ]; then
 echo "Card mounted"
 echo "Starting the backup"
 
+echo "17" > /sys/class/gpio/export
+echo "out" > /sys/class/gpio/gpio17/direction
+echo "1" > /sys/class/gpio/gpio17/value
+
 # Perform backup using rsync
 rsync -avh $CARD_MOUNT_POINT/ $BACKUP_PATH
+sleep 5
+echo "0" > /sys/class/gpio/gpio17/value
 # Turn off the ACT LED to indicate that the backup is completed
-sudo sh -c "echo 0 > /sys/class/leds/led0/brightness"
+#sudo sh -c "echo 0 > /sys/class/leds/led0/brightness"
 fi
 # Shutdown
 sync
+sleep 3
 init 0
